@@ -494,7 +494,9 @@ footer .wrap{padding-block:64px 36px;display:flex;flex-direction:column;gap:44px
       <div class="eyebrow" data-i18n="ct-eye">06 / Contacte</div>
       <h2 class="disp h2" data-i18n="ct-h">Parlem del teu projecte.</h2>
       <p class="lede" data-i18n="ct-p">Explica'ns què necessites i et respondrem amb una proposta.</p>
-      <form class="quote" id="quote" novalidate>
+      <form class="quote" id="quote" name="pressupost" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="form-name" value="pressupost">
+        <p hidden><label>No omplis aquest camp: <input name="bot-field"></label></p>
         <fieldset class="full">
           <legend data-i18n="who">Soc…</legend>
           <div class="chips">
@@ -504,19 +506,19 @@ footer .wrap{padding-block:64px 36px;display:flex;flex-direction:column;gap:44px
             <label class="chip"><input type="radio" name="tipus" id="t-arq" value="arquitecte"><span data-i18n="t4">Arquitecte / interiorista</span></label>
           </div>
         </fieldset>
-        <label class="field" for="f-nom"><span data-i18n="l-nom">Nom i empresa</span><input id="f-nom" type="text" required autocomplete="name" data-i18n-ph="ph-nom" placeholder="Nom (i empresa, si escau)"></label>
-        <label class="field" for="f-tel"><span data-i18n="l-tel">Telèfon</span><input id="f-tel" type="tel" autocomplete="tel" placeholder="6XX XXX XXX"></label>
-        <label class="field" for="f-mail"><span data-i18n="l-mail">Correu electrònic</span><input id="f-mail" type="email" required autocomplete="email" placeholder="nom@correu.com"></label>
-        <label class="field" for="f-lloc"><span data-i18n="l-lloc">Municipi</span><input id="f-lloc" type="text" placeholder="Sabadell"></label>
+        <label class="field" for="f-nom"><span data-i18n="l-nom">Nom i empresa</span><input id="f-nom" name="nom" type="text" required autocomplete="name" data-i18n-ph="ph-nom" placeholder="Nom (i empresa, si escau)"></label>
+        <label class="field" for="f-tel"><span data-i18n="l-tel">Telèfon</span><input id="f-tel" name="telefon" type="tel" autocomplete="tel" placeholder="6XX XXX XXX"></label>
+        <label class="field" for="f-mail"><span data-i18n="l-mail">Correu electrònic</span><input id="f-mail" name="email" type="email" required autocomplete="email" placeholder="nom@correu.com"></label>
+        <label class="field" for="f-lloc"><span data-i18n="l-lloc">Municipi</span><input id="f-lloc" name="municipi" type="text" placeholder="Sabadell"></label>
         <label class="field" for="f-part"><span data-i18n="l-part">Què necessites?</span>
-          <select id="f-part">
+          <select id="f-part" name="partides">
             <option data-i18n="o0">Diverses partides</option><option data-i18n="p1">Portes</option><option data-i18n="p2">Armaris</option><option data-i18n="p3">Paviments de fusta</option><option data-i18n="p4">Cuines</option><option data-i18n="p5">Parets mòbils</option><option data-i18n="p6">Fusteria a mida</option>
           </select>
         </label>
-        <label class="field" for="f-when"><span data-i18n="l-when">Quan ho necessites?</span><input id="f-when" type="text" data-i18n-ph="ph-when" placeholder="Mes / any"></label>
-        <label class="field full" for="f-msg"><span data-i18n="l-msg">Explica'ns el projecte</span><textarea id="f-msg" rows="4" data-i18n-ph="ph-msg" placeholder="Mides aproximades, nombre d'unitats, acabats…"></textarea></label>
-        <label class="upload full" for="f-files"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg><span><b data-i18n="up">Adjunta fotos o documents</b> <span data-i18n="opt">(opcional)</span><small id="files-lbl">PDF, DWG, XLSX, JPG</small></span><input id="f-files" type="file" multiple></label>
-        <label class="check full" for="f-priv"><input id="f-priv" type="checkbox" required><span data-i18n="priv">He llegit i accepto la <a href="#legal">política de privacitat</a>.</span></label>
+        <label class="field" for="f-when"><span data-i18n="l-when">Quan ho necessites?</span><input id="f-when" name="quan" type="text" data-i18n-ph="ph-when" placeholder="Mes / any"></label>
+        <label class="field full" for="f-msg"><span data-i18n="l-msg">Explica'ns el projecte</span><textarea id="f-msg" name="missatge" rows="4" data-i18n-ph="ph-msg" placeholder="Mides aproximades, nombre d'unitats, acabats…"></textarea></label>
+        <label class="upload full" for="f-files"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg><span><b data-i18n="up">Adjunta fotos o documents</b> <span data-i18n="opt">(opcional)</span><small id="files-lbl">PDF, DWG, XLSX, JPG</small></span><input id="f-files" name="adjunt" type="file"></label>
+        <label class="check full" for="f-priv"><input id="f-priv" name="privacitat" value="acceptada" type="checkbox" required><span data-i18n="priv">He llegit i accepto la <a href="#legal">política de privacitat</a>.</span></label>
         <div class="full form-msg" id="form-msg" hidden></div>
         <button class="btn btn-oak full" type="submit" data-i18n="send">Envia la sol·licitud</button>
       </form>
@@ -605,8 +607,11 @@ footer .wrap{padding-block:64px 36px;display:flex;flex-direction:column;gap:44px
     k1:"Oficina",k2:"Móvil y WhatsApp",k3:"Correo",k4:"Fábrica · L–V 08:00–19:00",map:"Ver en el mapa ↗",
     lema:"Fabricamos calidad,<br><span>instalamos confianza.</span>",
     fc1:"SECTORES",fc2:"EMPRESA",lg1:"Aviso legal",lg2:"Privacidad",lg3:"Cookies",reg:"REG. MERCANTIL DE BARCELONA",
-    msgOk:"Gracias. Esta es una versión de muestra: el formulario todavía no envía datos.",
+    msgOk:"¡Gracias! Hemos recibido tu solicitud y te responderemos lo antes posible.",
     msgErr:"Revisa los campos marcados: nombre, correo y aceptar la política de privacidad.",
+    msgFail:"No se ha podido enviar. Inténtalo de nuevo o escríbenos a info@fusteriagm.com.",
+    msgBig:"El archivo es demasiado grande (máx. 8 MB). Envíalo a info@fusteriagm.com.",
+    sending:"Enviando…",
     menuOpen:"Abrir el menú",menuClose:"Cerrar el menú",
     "ft-eye":"Proyectos destacados","ft-h":"Cuatro obras, cuatro escalas.","ft-all":"Todos los proyectos →","ft-cta":"¿Tienes un proyecto en mente?",
     fp1:"Techo de listones de roble",fp1p:"Vivienda de obra nueva con techo de listones, iluminación integrada y puertas de paso a juego.",fp1m:"EJEMPLO · TECHO · PUERTAS · ARMARIOS",
@@ -614,8 +619,11 @@ footer .wrap{padding-block:64px 36px;display:flex;flex-direction:column;gap:44px
     fp3:"Oficina con sala de vidrio",fp3p:"Sala de reuniones con tabiques de vidrio y perfiles de madera, y mesas de trabajo hechas a medida.",fp3m:"EJEMPLO · TABIQUES · MESAS A MEDIDA",
     fp4:"Cocina en U",fp4p:"Cocina a medida con frentes de madera, armarios altos oscuros y encimera continua.",fp4m:"EJEMPLO · COCINA · MUEBLES A MEDIDA"
   };
-  var CA={msgOk:"Gràcies. Aquesta és una versió de mostra: el formulari encara no envia dades.",
+  var CA={msgOk:"Gràcies! Hem rebut la teva sol·licitud i et respondrem al més aviat possible.",
     msgErr:"Revisa els camps marcats: nom, correu i acceptar la política de privacitat.",
+    msgFail:"No s'ha pogut enviar. Torna-ho a provar o escriu-nos a info@fusteriagm.com.",
+    msgBig:"L'arxiu és massa gran (màx. 8 MB). Envia'l a info@fusteriagm.com.",
+    sending:"Enviant…",
     menuOpen:"Obre el menú",menuClose:"Tanca el menú"};
   var els=[].slice.call(document.querySelectorAll('[data-i18n]'));
   els.forEach(function(el){CA[el.getAttribute('data-i18n')] = CA[el.getAttribute('data-i18n')] || el.innerHTML;});
@@ -647,9 +655,15 @@ footer .wrap{padding-block:64px 36px;display:flex;flex-direction:column;gap:44px
   var form=document.getElementById('quote'), msg=document.getElementById('form-msg');
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var ok=form.checkValidity();
-    msg.textContent=t(ok?'msgOk':'msgErr'); msg.hidden=false;
-    if(!ok){ var bad=form.querySelector(':invalid'); if(bad) bad.focus(); }
+    if(!form.checkValidity()){ msg.textContent=t('msgErr'); msg.hidden=false; var bad=form.querySelector(':invalid'); if(bad) bad.focus(); return; }
+    if(files.files[0] && files.files[0].size>8*1024*1024){ msg.textContent=t('msgBig'); msg.hidden=false; return; }
+    var btn=form.querySelector('button[type=submit]'), label=btn.innerHTML;
+    btn.disabled=true; btn.textContent=t('sending');
+    fetch('/',{method:'POST',body:new FormData(form)})
+      .then(function(r){ if(!r.ok) throw new Error(r.status);
+        msg.textContent=t('msgOk'); msg.hidden=false; form.reset(); fl.textContent='PDF, DWG, XLSX, JPG'; })
+      .catch(function(){ msg.textContent=t('msgFail'); msg.hidden=false; })
+      .then(function(){ btn.disabled=false; btn.innerHTML=label; });
   });
 
   try{ if(localStorage.getItem('gm-lang')==='es') apply('es'); }catch(e){}
